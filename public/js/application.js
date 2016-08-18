@@ -1,7 +1,23 @@
 $(document).ready(function() {
-  // This is called after the document has loaded in its entirety
-  // This guarantees that any elements we bind to will exist on the page
-  // when we try to bind to them
 
-  // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
+	$('#search-form').on('submit', function(event) {
+		event.preventDefault();
+		var $search = $(this);
+		var artistQuery = $search.serialize();
+		var url = "https://api.spotify.com/v1/search?" + artistQuery + "&type=artist";
+		var request = $.ajax({
+			url: url
+		});
+		request.done(function(response) {
+			var searchResults = response;
+			//console.log(searchResults.artists.items[0].name);
+			var results = [];
+			for(var i = 0; i < 10; i++) {
+				var name = searchResults.artists.items[i].name; 
+				var id = searchResults.artists.items[i].id;
+				results.push({name : id});
+			}
+			console.log(results);
+		});
+	});
 });
