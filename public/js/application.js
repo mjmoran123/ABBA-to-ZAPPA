@@ -1,9 +1,14 @@
 $(document).ready(function() {
 	var startFlag;
 	var goalFlag;
+	var startArtist;
+	var goalArtist;
 	var currentArtist;
-	
+	var winFlag;
+
 	toggleSearchers();
+	$('#search-result-buttons').show();
+	$('#related-artist-buttons').hide();
 
 	$('.forms').on('submit', '.form', function(event) {
 		event.preventDefault();
@@ -24,29 +29,39 @@ $(document).ready(function() {
 			var searchResults = response;
 			$('.button').hide();
 			for(var i = 0; i < 10; i++) {
-				var artistButton = "<li class='button-li'><button id='"+ searchResults.artists.items[i].id + "' class='button " + whichEnd + "'>" + searchResults.artists.items[i].name + "</button></li>"
-				$('#button-list').append(artistButton);
+				var artistButton = "<li class='button-li'><button id='"+ searchResults.artists.items[i].id + "' class='button " + whichEnd + "'>" + searchResults.artists.items[i].name + "</button></li>";
+				$('#search-button-list').append(artistButton);
 			}
 		});	
 	});
 
-	$('.search-result-buttons').on('click', '.button', function(event) {
+	$('#search-result-buttons').on('click', '.button', function(event) {
 		$button = $(this)
 		if ($button.hasClass('start')) {
-			var startArtist = new Artist($button.text(), $button.attr('id'));
+			startArtist = new Artist($button.text(), $button.attr('id'));
 			startFlag = 1;
-			$('#artist-list').prepend("<li>" + startArtist.name + "</li>");
+			$('#artist-list').prepend("<li> START:   " + startArtist.name + "</li>");
 		} else {
-			var goalArtist = new Artist($button.text(), $button.attr('id'));
+			goalArtist = new Artist($button.text(), $button.attr('id'));
+			console.log(goalArtist.name);
+			$('#artist-list').append("<li> GOAL:   " + goalArtist.name + "</li>");
 			goalFlag = 1;
-			$('#artist-list').append("<li>" + goalArtist.name + "</li>");
 		}
 		$('.button-li').hide();
 		if (!startFlag || !goalFlag) {
 			toggleSearchers();
 		} else {
-			$('form').hide();
-			startGame();
+			$('.form').hide();
+			$('#search-result-buttons').hide();
+			$('#related-artist-buttons').show();
+			currentArtist = startArtist;
+			while (!winFlag) {
+				var relatedArtists = getRelatedArtists(currentArtist);
+				makeOptionButtons(relatedArtists);
+				addCurrentArtistHeader(currentArtist);
+
+			}
+			
 		}
 
 	});
