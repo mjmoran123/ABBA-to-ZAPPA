@@ -1,7 +1,23 @@
-<div class="container">
-<form id="search-form">
-  <label>Artist Search</label>
-  <input type="text" name="q">
-  <input type="submit" name="Search">
-</form>
+<div class="forms">
+	<form id="start-search-form" class="start form hidden">
+	  <label>Pick an Artist to Start With:</label>
+	  <input type="text" name="q">
+	  <input type="submit" name="Search">
+	</form>
+
+	<form id="goal-search-form" class="goal form">
+	  <label>Pick an Artist to End With:</label>
+	  <input type="text" name="q">
+	  <input type="submit" name="Search">
+	</form>
+</div>
+
+<div class="search-result-buttons">
+	<ul id="button-list">
+		
+	</ul>
+</div>
+
+<div id="path">
+	<ul id="artist-list"></ul>
 </div>

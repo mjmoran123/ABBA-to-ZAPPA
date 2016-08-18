@@ -1,9 +1,44 @@
-.container {
-  margin: 20px auto;
-  width: 600px;
-  padding: 0px 20px 20px 20px;
-  border: 1px dotted black;
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+
 }
-th {
-  text-align: left;
+
+.container {
+	margin: 0 auto;
+	width: 960px;
+	position: relative;
+	border: 1px solid red;
+}
+
+.forms {
+	width: 630px;
+	position: absolute;
+	left: 0;
+	border: 1px solid red;
+	height: 100px;
+}
+
+.search-result-buttons {
+	width: 310px;
+	position: absolute;
+	left: 0;
+	top: 110px;
+	height: 400px;
+	border: 1px solid red;
+}
+
+#path {
+	width: 310px;
+	position: absolute;
+	right: 0;
+	border: 1px solid red;
+	height: 600px;
+}
+
+
+
+.hidden {
+	display: none;
 }
