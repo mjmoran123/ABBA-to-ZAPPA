@@ -23,7 +23,7 @@ var toggleSearchers = function() {
 
 	}
 
-	var getRelatedArtists = function(artist) {
+	var getRelatedArtists = function(artist, doneFunc) {
 		var url = "https://api.spotify.com/v1/artists/" + artist.id + "/related-artists";
 		var artistArray = [];
 		var request = $.ajax({
@@ -36,14 +36,15 @@ var toggleSearchers = function() {
 				var id = relatedArtistData[index].id;
 				artistArray.push(new Artist(name, id));
 			}
+			doneFunc(artistArray);
 		});
-		return artistArray
+		return null;
 	}
 
 	var makeOptionButtons = function(relatedArtistArray) {
 		for(var index = 0; index < relatedArtistArray.length; index++) {
 			var artist = relatedArtistArray[index];
-			var button = "<li class='button-li'><button id='"+ artist.id + "' class='button>" + artist.name + "</button></li>";
+			var button = "<li class='button-li'><button id='"+ artist.id + "'>" + artist.name + "</button></li>";
 			$('#related-button-list').append(button);
 		}
 	}

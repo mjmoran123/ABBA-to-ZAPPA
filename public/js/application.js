@@ -56,9 +56,14 @@ $(document).ready(function() {
 			$('#related-artist-buttons').show();
 			currentArtist = startArtist;
 			while (!winFlag) {
-				var relatedArtists = getRelatedArtists(currentArtist);
-				makeOptionButtons(relatedArtists);
-				addCurrentArtistHeader(currentArtist);
+				//$('.button-li').show();
+				getRelatedArtists(currentArtist, function(relatedArtists) {
+					makeOptionButtons(relatedArtists);
+					addCurrentArtistHeader(currentArtist);
+				});
+
+				
+				winFlag = 1;
 
 			}
 			
