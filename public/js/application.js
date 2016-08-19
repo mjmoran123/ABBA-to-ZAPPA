@@ -59,41 +59,35 @@ $(document).ready(function() {
 			getRelatedArtists(currentArtist, function(relatedArtists) {
 					makeOptionButtons(relatedArtists);
 					addCurrentArtistHeader(currentArtist);
-					if (checkForWin(relatedArtists, goalArtist)) {
-						var chainLength = $('#artist-list').children().length - 1;
-						var winHeader = "<h3> Congratulations! You connected" + startArtist.name + " to " + goalArtist.name + " in " + chainLength + " moves</h3>"; 
-						$('#current-header').after(winH3);
-					}
+					
 	      });
 
 			}
 	});
+
+	//if(checkForWin(relatedArtists, goalArtist)) {
+					// 	var chainLength = $('#artist-list').children().length - 1;
+					// 	var winHeader = "<h3> Congratulations! You connected" + startArtist.name + " to " + goalArtist.name + " in " + chainLength + " moves</h3>"; 
+					// 	$('#current-header').after(winH3);
+					// }
 
 	$('#related-artist-buttons').on('click', 'button', function(event) {
 					var $button = $(this);
 					currentArtist.id = $button.attr('id');
 					currentArtist.name = $button.text();
 					$('.button-li').remove();
-					$('#artist-list').children().first().after("<li>" + currentArtist.name + " - </li>");
+					$('#artist-list').children().last().before("<li>" + currentArtist.name + " - </li>");
 
-
-					getRelatedArtists(currentArtist, function(relatedArtists) {
-					makeOptionButtons(relatedArtists);
-					addCurrentArtistHeader(currentArtist);
-					if (checkForWin(relatedArtists, goalArtist)) {
+					if (currentArtist.id === goalArtist.id) {
 						var chainLength = $('#artist-list').children().length - 1;
 						var winHeader = "<h3> Congratulations! You connected" + startArtist.name + " to " + goalArtist.name + " in " + chainLength + " moves</h3>"; 
-						$('#current-header').after(winH3);
-					}
-	      });
-
-
-
-	});
-
-
-
-
-
-					
+						$('#current-header').after(winHeader);
+					} 
+					else {
+						getRelatedArtists(currentArtist, function(relatedArtists) {
+						makeOptionButtons(relatedArtists);
+						addCurrentArtistHeader(currentArtist);
+					});
+	      	}
+	});					
 });
