@@ -12,6 +12,18 @@ $(document).ready(function() {
 	$('#related-artist-buttons').hide();
 	$('.win').hide();
 
+	$('#main-header').on('click', 'h1', function() {
+		$header = $(this);
+		if ($header.hasClass('skrillex')) {
+			$(this).text("ABBA to ZAPPA");
+			$(this).removeClass('skrillex');
+		}
+		else {
+			$(this).text("6 dGrZz of SkR!LLeX!!!");
+			$(this).addClass('skrillex');
+		}
+	});
+
 	$('.forms').on('submit', '.form', function(event) {
 		event.preventDefault();
 		var $search = $(this);
@@ -43,7 +55,7 @@ $(document).ready(function() {
 			startArtist = new Artist($button.text(), $button.attr('id'));
 			console.log(startArtist.name);
 			startFlag = 1;
-			$('#artist-list').prepend("<li class='endpoint'> START:   " + startArtist.name + " - </li><br>");
+			$('#artist-list').prepend("<li class='endpoint'> START:   " + startArtist.name + "</li><br>");
 			currentArtist = startArtist;
 		} else {
 			goalArtist = new Artist($button.text(), $button.attr('id'));
