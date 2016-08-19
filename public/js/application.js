@@ -7,8 +7,10 @@ $(document).ready(function() {
 	var winFlag;
 
 	toggleSearchers();
+	$('#current-header').hide();
 	$('#search-result-buttons').show();
 	$('#related-artist-buttons').hide();
+	$('.win').hide();
 
 	$('.forms').on('submit', '.form', function(event) {
 		event.preventDefault();
@@ -41,7 +43,7 @@ $(document).ready(function() {
 			startArtist = new Artist($button.text(), $button.attr('id'));
 			console.log(startArtist.name);
 			startFlag = 1;
-			$('#artist-list').prepend("<li class='endpoint'> START:   " + startArtist.name + " - </li>");
+			$('#artist-list').prepend("<li class='endpoint'> START:   " + startArtist.name + " - </li><br>");
 			currentArtist = startArtist;
 		} else {
 			goalArtist = new Artist($button.text(), $button.attr('id'));
@@ -60,6 +62,7 @@ $(document).ready(function() {
 			getRelatedArtists(currentArtist, function(relatedArtists) {
 					makeOptionButtons(relatedArtists);
 					addCurrentArtistHeader(currentArtist);
+					$('#current-header').show();
 					
 	      });
 
@@ -73,12 +76,14 @@ $(document).ready(function() {
 					var $button = $(this);
 					currentArtist = new Artist($button.text(), $button.attr('id'));
 					$('.button-li').remove();
-					$('#artist-list').children().last().before("<li>" + currentArtist.name + " - </li>");
+					$('#artist-list').children().last().before("<li class='path-li'>" + currentArtist.name + "</li><br>");
 
 					if (currentArtist.id === goalArtist.id) {
-						var chainLength = $('#artist-list').children().length - 2;
-						var winHeader = "<h3> Congratulations! You connected " + startArtist.name + " to " + goalArtist.name + " in " + chainLength + " moves</h3>"; 
+						var chainLength = (($('#artist-list').children().length - 1) / 2 ) - 1;
+						var winHeader = "<p class='win'> Congratulations! You connected " + startArtist.name + " to " + goalArtist.name + " in " + chainLength + " moves!</p>"; 
 						$('#current-header').after(winHeader);
+						$('#current-header').hide();
+						$('.win').show();
 					} 
 					else {
 						getRelatedArtists(currentArtist, function(relatedArtists) {

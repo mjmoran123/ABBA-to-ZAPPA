@@ -19,9 +19,7 @@ var toggleSearchers = function() {
 		return li;
 	}
 
-	var startGame = function() {
-
-	}
+	
 
 	var getRelatedArtists = function(artist, doneFunc) {
 		if (artist) {

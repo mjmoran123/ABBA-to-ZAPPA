@@ -90,9 +90,10 @@ button {
 .fake-button {
 	/*margin: 5px;
 	display: inline-block;*/
-	background-color: #FAFA05;
+	background-color: #E610B4;
 	border: 2px solid #E610B4;
 	border-radius: 4px;
+	color: #44D5FC;
 
 
 
@@ -112,8 +113,42 @@ li {
 	font-size: 20px;
 }
 
+.path-li {
+	background-color: #E610B4;
+	border: 2px solid #FAFA05;
+	border-radius: 4px;
+	padding: 5px;
+	font-size: 20px;
+	color: #FAFA05;
+
+}
+
+form {
+	margin: 5px;
+	display: inline-block;
+	background-color: #FAFA05;
+	border: 2px solid #E610B4;
+	border-radius: 4px;
+	padding: 10px;
+}
+
+h3 {
+	background-color: #FAFA05;
+	border: 2px solid #E610B4;
+	border-radius: 4px;
+	padding: 10px;
+}
+
+.win {
+	background-color: #FAFA05;
+	border: 2px solid #E610B4;
+	border-radius: 4px;
+	padding: 8px;
+	font-size: 18px;
+}
 
 
+/*pink: #E610B4    blue: #44D5FC   yellow: #FAFA05*/
 .hidden {
 	display: none;
 }
