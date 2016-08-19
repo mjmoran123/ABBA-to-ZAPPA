@@ -5,6 +5,7 @@ $(document).ready(function() {
 	var goalArtist;
 	var currentArtist;
 	var winFlag;
+	var counter = 0;
 
 	toggleSearchers();
 	$('#search-result-buttons').show();
@@ -40,7 +41,7 @@ $(document).ready(function() {
 		if ($button.hasClass('start')) {
 			startArtist = new Artist($button.text(), $button.attr('id'));
 			startFlag = 1;
-			$('#artist-list').prepend("<li> START:   " + startArtist.name + "</li>");
+			$('#artist-list').prepend("<li> START:   " + startArtist.name + " - </li>");
 		} else {
 			goalArtist = new Artist($button.text(), $button.attr('id'));
 			console.log(goalArtist.name);
@@ -55,15 +56,35 @@ $(document).ready(function() {
 			$('#search-result-buttons').hide();
 			$('#related-artist-buttons').show();
 			currentArtist = startArtist;
-			while (!winFlag) {
+			while (counter < 25 || !winFlag) {
 				//$('.button-li').show();
 				getRelatedArtists(currentArtist, function(relatedArtists) {
 					makeOptionButtons(relatedArtists);
 					addCurrentArtistHeader(currentArtist);
+					if (checkForWin(relatedArtists, goalArtist)) {
+						var chainLength = $('#artist-list').children().length - 1;
+						var winHeader = "<h3> Congratulations! You connected" + startArtist.name + " to " + goalArtist.name + " in " + chainLength + " moves</h3>"; 
+						$('#current-header').after(winH3);
+						winFlag = 1;
+					}
 				});
 
-				
-				winFlag = 1;
+				$('#related-artist-buttons').on('click', 'button', function(event) {
+					var $button = $(this);
+					currentArtist.id = $button.attr('id');
+					currentArtist.name = $button.text();
+					console.log(currentArtist.name);
+					console.log(currentArtist.id);
+					$('#artist-list').children().first().after("<li>" + currentArtist.name + " - </li>");
+
+
+
+				});
+
+				counter += 1;
+
+
+				//winFlag = 1;
 
 			}
 			

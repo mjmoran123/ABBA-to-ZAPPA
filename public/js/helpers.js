@@ -52,3 +52,8 @@ var toggleSearchers = function() {
 	var addCurrentArtistHeader = function(artist) {
 		$('#current-header').text("Current Artist:  " + artist.name);
 	}
+
+	var checkForWin = function(relatedArtistArray, goalArtist) {
+		return relatedArtistArray.includes(goalArtist);
+		}
+	
