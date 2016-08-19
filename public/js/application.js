@@ -39,6 +39,7 @@ $(document).ready(function() {
 		$button = $(this)
 		if ($button.hasClass('start')) {
 			startArtist = new Artist($button.text(), $button.attr('id'));
+			console.log(startArtist.name);
 			startFlag = 1;
 			$('#artist-list').prepend("<li> START:   " + startArtist.name + " - </li>");
 			currentArtist = startArtist;
@@ -65,22 +66,20 @@ $(document).ready(function() {
 			}
 	});
 
-	//if(checkForWin(relatedArtists, goalArtist)) {
-					// 	var chainLength = $('#artist-list').children().length - 1;
-					// 	var winHeader = "<h3> Congratulations! You connected" + startArtist.name + " to " + goalArtist.name + " in " + chainLength + " moves</h3>"; 
-					// 	$('#current-header').after(winH3);
-					// }
+
 
 	$('#related-artist-buttons').on('click', 'button', function(event) {
+					console.log(startArtist.name);
 					var $button = $(this);
-					currentArtist.id = $button.attr('id');
-					currentArtist.name = $button.text();
+					currentArtist = new Artist($button.text(), $button.attr('id'));
+					//currentArtist.id = $button.attr('id');
+					//currentArtist.name = $button.text();
 					$('.button-li').remove();
 					$('#artist-list').children().last().before("<li>" + currentArtist.name + " - </li>");
 
 					if (currentArtist.id === goalArtist.id) {
-						var chainLength = $('#artist-list').children().length - 1;
-						var winHeader = "<h3> Congratulations! You connected" + startArtist.name + " to " + goalArtist.name + " in " + chainLength + " moves</h3>"; 
+						var chainLength = $('#artist-list').children().length - 2;
+						var winHeader = "<h3> Congratulations! You connected " + startArtist.name + " to " + goalArtist.name + " in " + chainLength + " moves</h3>"; 
 						$('#current-header').after(winHeader);
 					} 
 					else {
