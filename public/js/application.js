@@ -41,11 +41,11 @@ $(document).ready(function() {
 			startArtist = new Artist($button.text(), $button.attr('id'));
 			console.log(startArtist.name);
 			startFlag = 1;
-			$('#artist-list').prepend("<li> START:   " + startArtist.name + " - </li>");
+			$('#artist-list').prepend("<li class='endpoint'> START:   " + startArtist.name + " - </li>");
 			currentArtist = startArtist;
 		} else {
 			goalArtist = new Artist($button.text(), $button.attr('id'));
-			$('#artist-list').append("<li> GOAL:   " + goalArtist.name + "</li>");
+			$('#artist-list').append("<li class='endpoint'> GOAL:   " + goalArtist.name + "</li>");
 			goalFlag = 1;
 		}
 		$('.button-li').hide();
@@ -72,8 +72,6 @@ $(document).ready(function() {
 					console.log(startArtist.name);
 					var $button = $(this);
 					currentArtist = new Artist($button.text(), $button.attr('id'));
-					//currentArtist.id = $button.attr('id');
-					//currentArtist.name = $button.text();
 					$('.button-li').remove();
 					$('#artist-list').children().last().before("<li>" + currentArtist.name + " - </li>");
 
