@@ -24,6 +24,7 @@ var toggleSearchers = function() {
 	}
 
 	var getRelatedArtists = function(artist, doneFunc) {
+		if (artist) {
 		var url = "https://api.spotify.com/v1/artists/" + artist.id + "/related-artists";
 		var artistArray = [];
 		var request = $.ajax({
@@ -38,6 +39,7 @@ var toggleSearchers = function() {
 			}
 			doneFunc(artistArray);
 		});
+		}
 		return null;
 	}
 
@@ -56,4 +58,6 @@ var toggleSearchers = function() {
 	var checkForWin = function(relatedArtistArray, goalArtist) {
 		return relatedArtistArray.includes(goalArtist);
 		}
+
+	
 	
