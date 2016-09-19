@@ -123,13 +123,22 @@ li {
 
 }
 
-form {
+.form {
 	margin: 5px;
 	display: inline-block;
 	background-color: #FAFA05;
 	border: 2px solid #E610B4;
 	border-radius: 4px;
 	padding: 10px;
+}
+
+form {
+	margin: 5px;
+	/*display: inline-block;*/
+	background-color: #FAFA05;
+	border: 2px solid #E610B4;
+	border-radius: 4px;
+	padding: 20px;
 }
 
 h3 {
@@ -151,4 +160,19 @@ h3 {
 /*pink: #E610B4    blue: #44D5FC   yellow: #FAFA05*/
 .hidden {
 	display: none;
+}
+
+a,
+a:link,
+a:active,
+a:visited,
+a:hover,
+.logout-button {
+  color:           black;
+  text-decoration: none;
+  background-color: #FAFA05;
+	border: 2px solid #E610B4;
+	border-radius: 4px;
+	padding: 10px;
+	font-size: 20px;
 }
