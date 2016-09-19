@@ -45,3 +45,8 @@ post '/login' do
 		erb :'players/login'
 	end
 end
+
+post '/logout' do 
+	session[:player_id] = nil
+	erb :index
+end
