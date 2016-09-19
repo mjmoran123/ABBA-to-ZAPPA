@@ -1,12 +1,8 @@
 enable :sessions
 
 
-get '/users/new' do
-	if request.xhr?
-		erb :'users/new', layout: false
-	else
-		erb :"users/new"
-	end
+get '/players/new' do
+	
 end
 
 get '/users/:id' do 
