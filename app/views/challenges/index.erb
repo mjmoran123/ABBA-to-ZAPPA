@@ -1,0 +1,11 @@
+<div>
+<h3>Select a Challenge</h3>
+	<ul id="challenge-list">
+	<% @challenges.each do |challenge| %>
+		<li class="challenge fake-button">
+			<%= challenge.start_name %> to <%= challenge.end_name %>
+		</li>
+	<% end %>
+		
+	</ul>
+</div>

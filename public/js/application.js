@@ -54,11 +54,14 @@ $(document).ready(function() {
 		if ($button.hasClass('start')) {
 			startArtist = new Artist($button.text(), $button.attr('id'));
 			console.log(startArtist.name);
+			console.log(startArtist.id);
 			startFlag = 1;
 			$('#artist-list').prepend("<li class='endpoint'> START:   " + startArtist.name + "</li><br>");
 			currentArtist = startArtist;
 		} else {
 			goalArtist = new Artist($button.text(), $button.attr('id'));
+			console.log(goalArtist.name);
+			console.log(goalArtist.id);
 			$('#artist-list').append("<li class='endpoint'> GOAL:   " + goalArtist.name + "</li>");
 			goalFlag = 1;
 		}
@@ -103,5 +106,11 @@ $(document).ready(function() {
 						addCurrentArtistHeader(currentArtist);
 					});
 	      	}
-	});					
-});
+	});
+
+	//event listener on challenges list
+	$('#challenge-list').on('click', '.challenge', function(event) {
+
+	});	//close challenge-list listener
+
+});//document ready close

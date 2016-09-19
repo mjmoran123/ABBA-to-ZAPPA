@@ -24,6 +24,7 @@
   <nav>
   <% if logged_in? %>
     <a href="/players/<%= current_user.id %>">Hi <%= current_user.username %></a>
+    <a href="/challenges">Challenges</a>
     <form class="logout-form" method="POST" action="/logout">
       <input id="logout-button" type="submit" name="Logout" value="Logout">
     </form>
