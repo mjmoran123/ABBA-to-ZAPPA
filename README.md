@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ### Build Something Beautiful & Meaningful
 
 #### Learning Competencies
@@ -29,3 +30,6 @@ Once you've come up with an idea, get one of your teachers to approve it.
 - [Mashape - List of API's](https://www.mashape.com/)
 - [Programmable Web](http://www.programmableweb.com/)
 - [Postman - REST Client](https://chrome.google.com/webstore/detail/postman-rest-client-packa/fhbjgbiflinjbdggehcddcbncdddomop?hl=en)
+=======
+# ABBA-to-ZAPPA
+>>>>>>> 4f3ead481f952c08c0cf39c3ed3767babd5fb3cd
