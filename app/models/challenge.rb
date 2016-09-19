@@ -1,3 +1,4 @@
 class Challenge < ActiveRecord::Base
-  # Remember to create a migration!
+  has_many :games
+  has_many :players, through: :games
 end
