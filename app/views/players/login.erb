@@ -1,0 +1,19 @@
+<% if @errors %>
+	<ul>
+		<% @errors.each do |error| %>
+			<li><%= error %></li>
+		<% end %>
+	</ul>
+<% end %>
+
+<form method="POST" action="/login">
+
+	<h4>Login to play ABBA to ZAPPA</h4>
+	<label for"username">Username:</label>
+	<input type="text" name="username" placeholder="Username">
+
+	<label for"password">Password:</label>
+	<input type="password" name="password" placeholder="Password">
+
+	<input class="fake-button" type="submit" value="Login">
+</form>

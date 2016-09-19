@@ -1,5 +1,6 @@
 var toggleSearchers = function() {
-		$('form').each(function(){
+		$('.form').each(function(){
+			console.log($(this))
 		if ($(this).hasClass('hidden')) {
 			$(this).removeClass('hidden');
 			$(this)[0].reset();

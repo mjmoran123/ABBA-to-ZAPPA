@@ -2,7 +2,7 @@ enable :sessions
 
 
 get '/players/new' do
-	
+	erb :'players/new'
 end
 
 get '/users/:id' do 
@@ -13,39 +13,35 @@ get '/users/:id' do
 	end
 end
 
-post '/users' do
-new_user = User.new(username: params[:username])
-	new_user.password = params[:password]
-	if request.xhr?
-		if new_user.save
-			session[:user_id] = new_user.id
-			erb :'users/profile', layout: false
-		else
-			@errors = new_user.errors.full_messages
-			erb :'users/new', layout: false
-		end
+post '/players' do
+	p params
+	new_player = Player.new(username: params[:username], email: params[:email])
+	new_player.password = params[:password]
+	p new_player.password
+	
+	if new_player.save
+		session[:player_id] = new_player.id
+		#redirect "/players/#{current_user.id}"
+		erb :index
 	else
-		if new_user.save
-			session[:user_id] = new_user.id
-			redirect "/users/#{current_user.id}"
-		else
-			@errors = new_user.errors.full_messages
-			erb :'users/new'
-		end
+		@errors = new_player.errors.full_messages
+		erb :'players/new'
 	end
+
 end
 
 get '/login' do 
-	erb :'users/login'
+	erb :'players/login'
 end
 
 post '/login' do 
-	@user = User.authenticate(params[:username], params[:password])
-	if @user 
-		session[:user_id] = @user.id
-		redirect "/users/#{current_user.id}"
+	@player = Player.authenticate(params[:username], params[:password])
+	if @player 
+		session[:player_id] = @player.id
+		#redirect "/players/#{current_user.id}"
+		erb :index
 	else
 		@errors = ["Something went wrong with your username or password. Try logging in again."]
-		erb :'users/login'
+		erb :'players/login'
 	end
 end
