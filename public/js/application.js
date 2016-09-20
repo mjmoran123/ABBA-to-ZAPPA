@@ -99,6 +99,13 @@ $(document).ready(function() {
 						$('#current-header').after(winHeader);
 						$('#current-header').hide();
 						$('.win').show();
+						var data = {startArtist, goalArtist, chainLength};
+						console.log(data);
+						var request = $.ajax({
+							url: "/challenges",
+							method: "POST",
+							data: data
+						});
 					} 
 					else {
 						getRelatedArtists(currentArtist, function(relatedArtists) {
@@ -137,6 +144,8 @@ $(document).ready(function() {
           $('#current-header').show();
           
         });
+
+
 
     });
     // window.location.href = this.children[this.selectedIndex].getAttribute('href');
