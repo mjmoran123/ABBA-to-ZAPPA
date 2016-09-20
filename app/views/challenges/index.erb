@@ -10,7 +10,9 @@
 		<% @challenges.each do |challenge| %>
 			<tr>
 				<td><%= challenge.start_name + " to " + challenge.end_name %></td>
-				<td></td>
+				<td><%= challenge.best %></td>
+				<td><%=challenge.record_holder %></td>
+				<td><%=challenge.avg_score %></td>
 			</tr>
 		<% end %>
 		
