@@ -1,11 +1,18 @@
 <div>
 <h3>Select a Challenge</h3>
-	<ul id="challenge-list">
-	<% @challenges.each do |challenge| %>
-		<li class="challenge"><a href="/challenges/<%= challenge.id %>">
-			<%= challenge.start_name %> to <%= challenge.end_name %></a>
-		</li>
-	<% end %>
+	<table id="challenge-stats-table">
+		<tr>
+			<th>Title</th>
+			<th>Best Score</th>
+			<th>Record Holder</th>
+			<th>Average Score</th>
+		</tr>
+		<% @challenges.each do |challenge| %>
+			<tr>
+				<td><%= challenge.start_name + " to " + challenge.end_name %></td>
+				<td></td>
+			</tr>
+		<% end %>
 		
-	</ul>
+	</table>
 </div>
