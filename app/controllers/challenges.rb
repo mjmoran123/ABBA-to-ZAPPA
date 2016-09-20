@@ -1,3 +1,5 @@
+require 'json'
+
 get '/challenges' do 
 	@challenges = Challenge.all
 	erb :'challenges/index'
@@ -10,5 +12,10 @@ get '/challenges/:id' do
 end
 
 post '/challenges' do 
-	p params
+	# p params[:startArtist][:name]
+	@challenge = Challenge.find_by(start_id: params[:startArtist][:id], end_id: params[:goalArtist][:id])
+	if @challenge
+		Game.create(player_id: current_user.id, challenge_id: @challenge.id, score: params[:chainLength])
+	end
+
 end

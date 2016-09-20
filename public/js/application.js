@@ -114,7 +114,6 @@ $(document).ready(function() {
 					});
 	      	}
 	});
-
 	document.getElementById('challenge-selector').onchange = function(event) {
 
     var url = $("option:selected").attr("href");
