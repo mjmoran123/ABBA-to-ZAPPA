@@ -87,7 +87,7 @@ $(document).ready(function() {
 
 
 	$('#related-artist-buttons').on('click', 'button', function(event) {
-					console.log(startArtist.name);
+					//console.log(startArtist.name);
 					var $button = $(this);
 					currentArtist = new Artist($button.text(), $button.attr('id'));
 					$('.button-li').remove();
@@ -108,10 +108,44 @@ $(document).ready(function() {
 	      	}
 	});
 
-	//event listener on challenges list
-	$('#challenge-list').on('click', '.challenge', function(event) {
-		event.preventDefault();
+	document.getElementById('challenge-selector').onchange = function(event) {
 
-	});	//close challenge-list listener
+    var url = $("option:selected").attr("href");
+    var request = $.ajax({
+      url: url,
+      dataType: 'json'
+    });
+
+    request.done(function(response) {
+      console.log(response.start_id);
+      // $('.form').hide();
+      startArtist = new Artist(response.start_name, response.start_id);
+      startFlag = 1;
+      $('#artist-list').append("<li class='endpoint'> START:   " + startArtist.name + "</li><br>");
+      currentArtist = startArtist;
+      goalArtist = new Artist(response.end_name, response.end_id);
+      goalFlag = 1;
+      $('#artist-list').append("<li class='endpoint'> GOAL:   " + goalArtist.name + "</li>");
+      $('.form').hide();
+      $('#search-result-buttons').hide();
+      $('#related-artist-buttons').show();
+
+
+      getRelatedArtists(currentArtist, function(relatedArtists) {
+          makeOptionButtons(relatedArtists);
+          addCurrentArtistHeader(currentArtist);
+          $('#current-header').show();
+          
+        });
+
+    });
+    // window.location.href = this.children[this.selectedIndex].getAttribute('href');
+}
+
+	//event listener on challenges list
+	// $('#challenge-list').on('click', '.challenge', function(event) {
+	// 	event.preventDefault();
+
+	// });	//close challenge-list listener
 
 });//document ready close
