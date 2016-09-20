@@ -24,6 +24,13 @@
   <nav>
   <% if logged_in? %>
     <a href="/players/<%= current_user.id %>">Hi <%= current_user.username %></a>
+
+    <select id="challenge-selector">
+    <% @challenges.each do |challenge| %>
+      <option href="/">other</option>
+      <option href="/challenges/<%= challenge.id %>"><%= challenge.start_name + " to " + challenge.end_name %> </option>
+    <% end %>
+</select>
     <form class="logout-form" method="POST" action="/logout">
       <input id="logout-button" type="submit" name="Logout" value="Logout">
     </form>
