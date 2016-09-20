@@ -125,6 +125,7 @@ $(document).ready(function() {
 
     request.done(function(response) {
       console.log(response.start_id);
+      // $("h3#current-header").clear();
       // $('.form').hide();
       startArtist = new Artist(response.start_name, response.start_id);
       startFlag = 1;
