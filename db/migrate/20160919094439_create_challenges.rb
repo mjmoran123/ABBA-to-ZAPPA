@@ -6,6 +6,7 @@ class CreateChallenges < ActiveRecord::Migration
   		t.string   :end_id, null: false
   		t.string 	 :end_name, null: false
   		t.integer  :best
+      t.string   :record_holder
   		t.timestamps
   	end
   end

@@ -94,6 +94,7 @@ $(document).ready(function() {
 					$('#artist-list').children().last().before("<li class='path-li'>" + currentArtist.name + "</li><br>");
 
 					if (currentArtist.id === goalArtist.id) {
+						$(".win").remove();
 						var chainLength = (($('#artist-list').children().length - 1) / 2 ) - 1;
 						var winHeader = "<p class='win'> Congratulations! You connected " + startArtist.name + " to " + goalArtist.name + " in " + chainLength + " moves!</p>"; 
 						$('#current-header').after(winHeader);
@@ -115,7 +116,9 @@ $(document).ready(function() {
 	      	}
 	});
 	document.getElementById('challenge-selector').onchange = function(event) {
+		$("current-header").empty();
 		$("current-header").hide();
+		$(".win").hide();
 		$('ul').empty();
     var url = $("option:selected").attr("href");
     var request = $.ajax({

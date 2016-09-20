@@ -14,14 +14,13 @@ get '/users/:id' do
 end
 
 post '/players' do
-	p params
 	new_player = Player.new(username: params[:username], email: params[:email])
 	new_player.password = params[:password]
-	p new_player.password
 	
 	if new_player.save
 		session[:player_id] = new_player.id
 		#redirect "/players/#{current_user.id}"
+		@challenges = Challenge.all
 		erb :index
 	else
 		@errors = new_player.errors.full_messages
@@ -39,6 +38,7 @@ post '/login' do
 	if @player 
 		session[:player_id] = @player.id
 		#redirect "/players/#{current_user.id}"
+		@challenges = Challenge.all
 		erb :index
 	else
 		@errors = ["Something went wrong with your username or password. Try logging in again."]
