@@ -1,4 +1,5 @@
 get '/' do
+	@challenges = Challenge.all
   erb :index
 end
 

@@ -110,6 +110,7 @@ $(document).ready(function() {
 
 	//event listener on challenges list
 	$('#challenge-list').on('click', '.challenge', function(event) {
+		event.preventDefault();
 
 	});	//close challenge-list listener
 

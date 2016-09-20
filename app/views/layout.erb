@@ -15,6 +15,7 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="/js/helpers.js"></script>
   <script src="/js/application.js"></script>
+  <script src="/js/menus.js"></script>
 
   <title>ABBA to ZAPPA</title>
 </head>
@@ -24,7 +25,13 @@
   <nav>
   <% if logged_in? %>
     <a href="/players/<%= current_user.id %>">Hi <%= current_user.username %></a>
-    <a href="/challenges">Challenges</a>
+
+    <select id="challenge-selector">
+    <% @challenges.each do |challenge| %>
+      <option href="/">other</option>
+      <option href="/challenges/<%= challenge.id %>"><%= challenge.start_name + " to " + challenge.end_name %> </option>
+    <% end %>
+</select>
     <form class="logout-form" method="POST" action="/logout">
       <input id="logout-button" type="submit" name="Logout" value="Logout">
     </form>
