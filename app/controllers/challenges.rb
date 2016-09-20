@@ -17,5 +17,9 @@ post '/challenges' do
 	if @challenge
 		Game.create(player_id: current_user.id, challenge_id: @challenge.id, score: params[:chainLength])
 	end
+	if @challenge.best == nil || params[:chainLength].to_i < @challenge.best
+		@challenge.update(best: params[:chainLength])
+		p "NEW RECORD!"
+	end
 
 end
