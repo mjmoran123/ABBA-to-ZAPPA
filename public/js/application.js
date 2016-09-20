@@ -114,9 +114,9 @@ $(document).ready(function() {
 					});
 	      	}
 	});
-
 	document.getElementById('challenge-selector').onchange = function(event) {
-
+		$("current-header").hide();
+		$('ul').empty();
     var url = $("option:selected").attr("href");
     var request = $.ajax({
       url: url,
@@ -125,7 +125,8 @@ $(document).ready(function() {
 
     request.done(function(response) {
       console.log(response.start_id);
-      // $("h3#current-header").clear();
+      console.log(response.end_name)
+      
       // $('.form').hide();
       startArtist = new Artist(response.start_name, response.start_id);
       startFlag = 1;
