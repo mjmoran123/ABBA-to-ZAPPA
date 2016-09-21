@@ -141,25 +141,13 @@ $(document).ready(function() {
       $('.form').hide();
       $('#search-result-buttons').hide();
       $('#related-artist-buttons').show();
-
-
       getRelatedArtists(currentArtist, function(relatedArtists) {
           makeOptionButtons(relatedArtists);
           addCurrentArtistHeader(currentArtist);
-          $('#current-header').show();
-          
+          $('#current-header').show(); 
         });
-
-
-
     });
     // window.location.href = this.children[this.selectedIndex].getAttribute('href');
-}
-
-	//event listener on challenges list
-	// $('#challenge-list').on('click', '.challenge', function(event) {
-	// 	event.preventDefault();
-
-	// });	//close challenge-list listener
-
+	}
+	$("tr:even").css("background-color", "#FAFA05");
 });//document ready close

@@ -146,6 +146,9 @@ h3 {
 	border: 2px solid #E610B4;
 	border-radius: 4px;
 	padding: 10px;
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .win {
@@ -194,4 +197,18 @@ a:hover {
 	border-radius: 4px;
 	height: 45px;
 	font-size: 20px;
+}
+
+table {
+	margin-left: auto;
+	margin-right: auto;
+	border-collapse: separate;
+	border-spacing: 0px;
+}
+
+td,th {
+	padding: 10px;
+	text-align: center;
+	border: 2px solid #E610B4;
+	border-radius: 4px;
 }
