@@ -212,3 +212,11 @@ td,th {
 	border: 2px solid #E610B4;
 	border-radius: 4px;
 }
+
+#challenge-selector {
+	background-color: #FAFA05;
+	height: 50px;
+	border: 2px solid #E610B4;
+	border-radius: 4px;
+	font-size: 20px;
+}
