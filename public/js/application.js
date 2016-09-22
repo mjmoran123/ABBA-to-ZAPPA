@@ -8,11 +8,12 @@ $(document).ready(function() {
 
 //////////////////////////////
 // CHOOSE YOUR OWN ADVENTURE CODE
-	toggleSearchers();
+	//toggleSearchers();
 	$('#current-header').hide();
 	//$('#search-result-buttons').show();
-	$('#related-artist-buttons').hide();
-	$('.win').hide();
+	//$('#related-artist-buttons').hide();
+	//$('.win').hide();
+	// $('#stats').hide();
 
 	$('.forms').on('submit', '.form', function(event) {
 		event.preventDefault();
@@ -73,6 +74,7 @@ $(document).ready(function() {
 
 			}
 	});
+	//END OF CHOOSE YOUR OWN ADVENTURE CODE
 /////////////////////////////////////////
 $('.main-focus').hide();
 
@@ -106,12 +108,15 @@ $('.main-focus').hide();
 					});
 	      	}
 	});
-	document.getElementById('challenge-selector').onchange = function(event) {
+
+	// maybe figure out how to render index on selection of challenge and then make ajax call to get start and end artist info
+	document.getElementById('challenge-selector').onchange = function() {
 		$('#stats').hide();
 		$("current-header").empty();
 		$("current-header").hide();
 		$(".win").hide();
 		$('ul').empty();
+		$('#whole-game').show();
     var url = $("option:selected").attr("href");
     var request = $.ajax({
       url: url,
@@ -121,7 +126,6 @@ $('.main-focus').hide();
     request.done(function(response) {
       console.log(response.start_id);
       console.log(response.end_name)
-      // $('#whole-game').show();
       // $('.form').hide();
       startArtist = new Artist(response.start_name, response.start_id);
       startFlag = 1;
@@ -141,6 +145,13 @@ $('.main-focus').hide();
     });
     // window.location.href = this.children[this.selectedIndex].getAttribute('href');
 	}
+
+	// $('#stats-link').on('click', function(e) {
+	// 	// e.preventDefault();
+	// 	$('#stats').show();
+	// 	$('#whole-game').remove();
+	// 	$('#related-artist-buttons').remove();
+	// });
 	$("tr:even").css("background-color", "#FAFA05");
 
 	$('#main-header').on('click', 'h1', function() {
