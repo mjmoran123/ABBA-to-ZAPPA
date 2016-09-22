@@ -2,7 +2,7 @@ require 'json'
 
 get '/challenges' do 
 	@challenges = Challenge.all
-	erb :index
+	erb :'challenges/index'
 end
 
 get '/challenges/:id' do 

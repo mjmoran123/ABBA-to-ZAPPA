@@ -10,15 +10,19 @@
 	  <input type="text" name="q">
 	  <input class="fake-button" type="submit" value="Search">
 	</form>
-</div>
-<div id="whole-game">
-	<h3 id="current-header"></h3>
-
 	<div id="search-result-buttons">
 		<ul id="search-button-list">
 			
 		</ul>
+		<!-- srch rslt btns moves below hdr if this is used -->
 	</div>
+
+</div>
+<div id="whole-game">
+	<h3 id="current-header"></h3>
+
+	
+	
 
 	<div id="related-artist-buttons">
 
@@ -32,23 +36,4 @@
 	</div>
 </div>
 
-<div id="stats">
-	<h3>Challenge Stats</h3>
-	<table id="challenge-stats-table">
-		<tr>
-			<th>Title</th>
-			<th>Best Score</th>
-			<th>Record Holder</th>
-			<th>Average Score</th>
-		</tr>
-		<% @challenges.each do |challenge| %>
-			<tr>
-				<td><%= challenge.start_name + " to " + challenge.end_name %></td>
-				<td><%= challenge.best %></td>
-				<td><%=challenge.record_holder %></td>
-				<td><%=challenge.avg_score %></td>
-			</tr>
-		<% end %>
-		
-	</table>
-</div>
+
