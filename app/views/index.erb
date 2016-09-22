@@ -18,7 +18,14 @@
 	</div>
 
 </div>
+
 <div id="whole-game">
+	<select id="challenge-selector">
+      <option >Choose a Challenge</option>
+      <% @challenges.each do |challenge| %>
+        <option href="/challenges/<%= challenge.id %>"><%= challenge.start_name + " to " + challenge.end_name %> </option>
+      <% end %>
+    </select>
 	<h3 id="current-header"></h3>
 
 	

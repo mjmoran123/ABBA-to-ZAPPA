@@ -111,12 +111,12 @@ $('.main-focus').hide();
 
 	// maybe figure out how to render index on selection of challenge and then make ajax call to get start and end artist info
 	document.getElementById('challenge-selector').onchange = function() {
-		$('#stats').hide();
+		//$('#stats').hide();
+		
 		$("current-header").empty();
 		$("current-header").hide();
 		$(".win").hide();
 		$('ul').empty();
-		$('#whole-game').show();
     var url = $("option:selected").attr("href");
     var request = $.ajax({
       url: url,
@@ -124,6 +124,7 @@ $('.main-focus').hide();
     });
 
     request.done(function(response) {
+    	$('#whole-game').show();
       console.log(response.start_id);
       console.log(response.end_name)
       // $('.form').hide();

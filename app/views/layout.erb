@@ -22,15 +22,9 @@
 <header id="main-header">
   <h1>ABBA to ZAPPA</h1>
   <nav>
+    <a href="/">Home</a>
   <% if logged_in? %>
     <a href="/players/<%= current_user.id %>">Hi <%= current_user.username %></a>
-
-    <select id="challenge-selector">
-      <option >Choose a Challenge</option>
-      <% @challenges.each do |challenge| %>
-        <option href="/challenges/<%= challenge.id %>"><%= challenge.start_name + " to " + challenge.end_name %> </option>
-      <% end %>
-    </select>
     <a id="stats-link" href="/challenges">Stats</a>
     <form class="logout-form" method="POST" action="/logout">
       <input id="logout-button" type="submit" name="Logout" value="Logout">
