@@ -5,9 +5,11 @@ get '/players/new' do
 	erb :'players/new'
 end
 
-get '/users/:id' do 
+get '/players/:id' do 
 	if logged_in? && params[:id] == current_user.id.to_s
-	erb :'users/profile'
+		# @challenges = current_user.challenges
+		@games = current_user.games.order(:challenge_id)
+	erb :'players/show'
 	else
 		erb :'404'
 	end

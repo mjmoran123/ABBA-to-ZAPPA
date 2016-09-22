@@ -5,7 +5,7 @@ $(document).ready(function() {
 	var goalArtist;
 	var currentArtist;
 	var winFlag;
-
+	$("tr:even").css("background-color", "#FAFA05");
 //////////////////////////////
 // CHOOSE YOUR OWN ADVENTURE CODE
 	//toggleSearchers();
@@ -153,7 +153,7 @@ $('.main-focus').hide();
 	// 	$('#whole-game').remove();
 	// 	$('#related-artist-buttons').remove();
 	// });
-	$("tr:even").css("background-color", "#FAFA05");
+	
 
 	$('#main-header').on('click', 'h1', function() {
 		$header = $(this);
