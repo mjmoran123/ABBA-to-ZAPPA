@@ -10,23 +10,45 @@
 	  <input type="text" name="q">
 	  <input class="fake-button" type="submit" value="Search">
 	</form>
-
+</div>
+<div id="whole-game">
 	<h3 id="current-header"></h3>
+
+	<div id="search-result-buttons">
+		<ul id="search-button-list">
+			
+		</ul>
+	</div>
+
+	<div id="related-artist-buttons">
+
+		<ul id="related-button-list">
+			
+		</ul>
+	</div>
+
+	<div id="path">
+		<ul id="artist-list"></ul>
+	</div>
 </div>
 
-<div id="search-result-buttons">
-	<ul id="search-button-list">
+<div id="stats">
+	<h3>Challenge Stats</h3>
+	<table id="challenge-stats-table">
+		<tr>
+			<th>Title</th>
+			<th>Best Score</th>
+			<th>Record Holder</th>
+			<th>Average Score</th>
+		</tr>
+		<% @challenges.each do |challenge| %>
+			<tr>
+				<td><%= challenge.start_name + " to " + challenge.end_name %></td>
+				<td><%= challenge.best %></td>
+				<td><%=challenge.record_holder %></td>
+				<td><%=challenge.avg_score %></td>
+			</tr>
+		<% end %>
 		
-	</ul>
-</div>
-
-<div id="related-artist-buttons">
-
-	<ul id="related-button-list">
-		
-	</ul>
-</div>
-
-<div id="path">
-	<ul id="artist-list"></ul>
+	</table>
 </div>
