@@ -129,7 +129,7 @@ end
 begin
   require 'rspec/core/rake_task'
   RSpec::Core::RakeTask.new(:spec)
-rescue LoadError
+  rescue LoadError
 end
 
-task :default  => :specs
+# task :default  => :specs
