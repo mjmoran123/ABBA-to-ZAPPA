@@ -6,23 +6,13 @@ $(document).ready(function() {
 	var currentArtist;
 	var winFlag;
 
+//////////////////////////////
+// CHOOSE YOUR OWN ADVENTURE CODE
 	toggleSearchers();
 	$('#current-header').hide();
-	$('#search-result-buttons').show();
+	//$('#search-result-buttons').show();
 	$('#related-artist-buttons').hide();
 	$('.win').hide();
-
-	$('#main-header').on('click', 'h1', function() {
-		$header = $(this);
-		if ($header.hasClass('skrillex')) {
-			$(this).text("ABBA to ZAPPA");
-			$(this).removeClass('skrillex');
-		}
-		else {
-			$(this).text("6 dGrZz of SkR!LLeX!!!");
-			$(this).addClass('skrillex');
-		}
-	});
 
 	$('.forms').on('submit', '.form', function(event) {
 		event.preventDefault();
@@ -83,7 +73,8 @@ $(document).ready(function() {
 
 			}
 	});
-
+/////////////////////////////////////////
+$('.main-focus').hide();
 
 
 	$('#related-artist-buttons').on('click', 'button', function(event) {
@@ -116,6 +107,7 @@ $(document).ready(function() {
 	      	}
 	});
 	document.getElementById('challenge-selector').onchange = function(event) {
+		$('#stats').hide();
 		$("current-header").empty();
 		$("current-header").hide();
 		$(".win").hide();
@@ -129,7 +121,7 @@ $(document).ready(function() {
     request.done(function(response) {
       console.log(response.start_id);
       console.log(response.end_name)
-      
+      // $('#whole-game').show();
       // $('.form').hide();
       startArtist = new Artist(response.start_name, response.start_id);
       startFlag = 1;
@@ -150,4 +142,16 @@ $(document).ready(function() {
     // window.location.href = this.children[this.selectedIndex].getAttribute('href');
 	}
 	$("tr:even").css("background-color", "#FAFA05");
+
+	$('#main-header').on('click', 'h1', function() {
+		$header = $(this);
+		if ($header.hasClass('skrillex')) {
+			$(this).text("ABBA to ZAPPA");
+			$(this).removeClass('skrillex');
+		}
+		else {
+			$(this).text("6 dGrZz of SkR!LLeX!!!");
+			$(this).addClass('skrillex');
+		}
+	});
 });//document ready close
