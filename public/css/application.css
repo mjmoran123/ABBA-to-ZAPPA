@@ -195,8 +195,10 @@ a:hover {
 	background-color: #FAFA05;
 	/*border: 2px solid #E610B4;*/
 	border-radius: 4px;
+	border: none;
 	height: 45px;
 	font-size: 20px;
+	box-shadow: none;
 }
 
 table {
