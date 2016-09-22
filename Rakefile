@@ -132,4 +132,4 @@ begin
   rescue LoadError
 end
 
-task :default  => :specs
+# task :default  => :specs
