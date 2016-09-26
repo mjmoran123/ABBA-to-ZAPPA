@@ -1,5 +1,5 @@
 var toggleSearchers = function() {
-		$('form').each(function(){
+		$('.form').each(function(){
 		if ($(this).hasClass('hidden')) {
 			$(this).removeClass('hidden');
 			$(this)[0].reset();
@@ -7,7 +7,7 @@ var toggleSearchers = function() {
 			$(this).addClass('hidden');
 		}
 		});
-	}
+}
 
 	function Artist(name, id) {
 		this.name = name,

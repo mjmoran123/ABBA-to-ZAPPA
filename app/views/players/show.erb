@@ -1,0 +1,17 @@
+
+<h3><%= current_user.username %>'s Stats</h3>
+	<table id="player-stats-table">
+		<tr>
+			<th>Title</th>
+			<th>Score</th>
+			<th>Date</th>
+		</tr>
+		<% @games.each do |game| %>
+			<tr>
+				<td><%= game.challenge.start_name + " to " + game.challenge.end_name %></td>
+				<td><%= game.score %></td>
+				<td><%=game.updated_at.strftime("%B %d, %Y") %></td>
+			</tr>
+		<% end %>
+		
+	</table>

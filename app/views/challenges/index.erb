@@ -1,0 +1,20 @@
+<div id="stats">
+	<h3>Challenge Stats</h3>
+	<table id="challenge-stats-table">
+		<tr>
+			<th>Title</th>
+			<th>Best Score</th>
+			<th>Record Holder</th>
+			<th>Average Score</th>
+		</tr>
+		<% @challenges.each do |challenge| %>
+			<tr>
+				<td><%= challenge.start_name + " to " + challenge.end_name %></td>
+				<td><%= challenge.best %></td>
+				<td><%=challenge.record_holder %></td>
+				<td><%=challenge.avg_score %></td>
+			</tr>
+		<% end %>
+		
+	</table>
+</div>

@@ -5,24 +5,15 @@ $(document).ready(function() {
 	var goalArtist;
 	var currentArtist;
 	var winFlag;
-
-	toggleSearchers();
+	$("tr:even").css("background-color", "#FAFA05");
+//////////////////////////////
+// CHOOSE YOUR OWN ADVENTURE CODE
+	//toggleSearchers();
 	$('#current-header').hide();
-	$('#search-result-buttons').show();
-	$('#related-artist-buttons').hide();
-	$('.win').hide();
-
-	$('#main-header').on('click', 'h1', function() {
-		$header = $(this);
-		if ($header.hasClass('skrillex')) {
-			$(this).text("ABBA to ZAPPA");
-			$(this).removeClass('skrillex');
-		}
-		else {
-			$(this).text("6 dGrZz of SkR!LLeX!!!");
-			$(this).addClass('skrillex');
-		}
-	});
+	//$('#search-result-buttons').show();
+	//$('#related-artist-buttons').hide();
+	//$('.win').hide();
+	// $('#stats').hide();
 
 	$('.forms').on('submit', '.form', function(event) {
 		event.preventDefault();
@@ -54,11 +45,14 @@ $(document).ready(function() {
 		if ($button.hasClass('start')) {
 			startArtist = new Artist($button.text(), $button.attr('id'));
 			console.log(startArtist.name);
+			console.log(startArtist.id);
 			startFlag = 1;
 			$('#artist-list').prepend("<li class='endpoint'> START:   " + startArtist.name + "</li><br>");
 			currentArtist = startArtist;
 		} else {
 			goalArtist = new Artist($button.text(), $button.attr('id'));
+			console.log(goalArtist.name);
+			console.log(goalArtist.id);
 			$('#artist-list').append("<li class='endpoint'> GOAL:   " + goalArtist.name + "</li>");
 			goalFlag = 1;
 		}
@@ -80,22 +74,32 @@ $(document).ready(function() {
 
 			}
 	});
-
+	//END OF CHOOSE YOUR OWN ADVENTURE CODE
+/////////////////////////////////////////
+$('.main-focus').hide();
 
 
 	$('#related-artist-buttons').on('click', 'button', function(event) {
-					console.log(startArtist.name);
+					//console.log(startArtist.name);
 					var $button = $(this);
 					currentArtist = new Artist($button.text(), $button.attr('id'));
 					$('.button-li').remove();
 					$('#artist-list').children().last().before("<li class='path-li'>" + currentArtist.name + "</li><br>");
 
 					if (currentArtist.id === goalArtist.id) {
+						$(".win").remove();
 						var chainLength = (($('#artist-list').children().length - 1) / 2 ) - 1;
 						var winHeader = "<p class='win'> Congratulations! You connected " + startArtist.name + " to " + goalArtist.name + " in " + chainLength + " moves!</p>"; 
 						$('#current-header').after(winHeader);
 						$('#current-header').hide();
 						$('.win').show();
+						var data = {startArtist, goalArtist, chainLength};
+						console.log(data);
+						var request = $.ajax({
+							url: "/challenges",
+							method: "POST",
+							data: data
+						});
 					} 
 					else {
 						getRelatedArtists(currentArtist, function(relatedArtists) {
@@ -103,5 +107,63 @@ $(document).ready(function() {
 						addCurrentArtistHeader(currentArtist);
 					});
 	      	}
-	});					
-});
+	});
+
+	// maybe figure out how to render index on selection of challenge and then make ajax call to get start and end artist info
+	document.getElementById('challenge-selector').onchange = function() {
+		//$('#stats').hide();
+		
+		$("current-header").empty();
+		$("current-header").hide();
+		$(".win").hide();
+		$('ul').empty();
+    var url = $("option:selected").attr("href");
+    var request = $.ajax({
+      url: url,
+      dataType: 'json'
+    });
+
+    request.done(function(response) {
+    	$('#whole-game').show();
+      console.log(response.start_id);
+      console.log(response.end_name)
+      // $('.form').hide();
+      startArtist = new Artist(response.start_name, response.start_id);
+      startFlag = 1;
+      $('#artist-list').append("<li class='endpoint'> START:   " + startArtist.name + "</li><br>");
+      currentArtist = startArtist;
+      goalArtist = new Artist(response.end_name, response.end_id);
+      goalFlag = 1;
+      $('#artist-list').append("<li class='endpoint'> GOAL:   " + goalArtist.name + "</li>");
+      $('.form').hide();
+      $('#search-result-buttons').hide();
+      $('#related-artist-buttons').show();
+      getRelatedArtists(currentArtist, function(relatedArtists) {
+          makeOptionButtons(relatedArtists);
+          addCurrentArtistHeader(currentArtist);
+          $('#current-header').show(); 
+        });
+    });
+    // window.location.href = this.children[this.selectedIndex].getAttribute('href');
+	}
+
+	// $('#stats-link').on('click', function(e) {
+	// 	// e.preventDefault();
+	// 	$('#stats').show();
+	// 	$('#whole-game').remove();
+	// 	$('#related-artist-buttons').remove();
+	// });
+	
+
+	$('#main-header').on('click', 'h1', function() {
+		$header = $(this);
+		if ($header.hasClass('skrillex')) {
+			$(this).text("ABBA to ZAPPA");
+			$(this).removeClass('skrillex');
+		}
+		else {
+			$(this).text("6 dGrZz of SkR!LLeX!!!");
+			$(this).addClass('skrillex');
+		}
+	});
+});//document ready close

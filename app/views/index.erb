@@ -2,31 +2,47 @@
 	<form id="start-search-form" class="start form hidden">
 	  <label>Pick an Artist to Start With:</label>
 	  <input type="text" name="q">
-	  <input class="fake-button" type="submit" name="Search">
+	  <input class="fake-button" type="submit" value="Search">
 	</form>
 
 	<form id="goal-search-form" class="goal form">
 	  <label>Pick an Artist to End With:</label>
 	  <input type="text" name="q">
-	  <input class="fake-button" type="submit" name="Search">
+	  <input class="fake-button" type="submit" value="Search">
 	</form>
+	<div id="search-result-buttons">
+		<ul id="search-button-list">
+			
+		</ul>
+		<!-- srch rslt btns moves below hdr if this is used -->
+	</div>
 
+</div>
+
+<div id="whole-game">
+	<% if current_user && logged_in? %>
+		<select id="challenge-selector">
+	      <option >Choose a Challenge</option>
+	      <% @challenges.each do |challenge| %>
+	        <option href="/challenges/<%= challenge.id %>"><%= challenge.start_name + " to " + challenge.end_name %> </option>
+	      <% end %>
+	    </select>
+	  <% end %>
 	<h3 id="current-header"></h3>
+
+	
+	
+
+	<div id="related-artist-buttons">
+
+		<ul id="related-button-list">
+			
+		</ul>
+	</div>
+
+	<div id="path">
+		<ul id="artist-list"></ul>
+	</div>
 </div>
 
-<div id="search-result-buttons">
-	<ul id="search-button-list">
-		
-	</ul>
-</div>
 
-<div id="related-artist-buttons">
-
-	<ul id="related-button-list">
-		
-	</ul>
-</div>
-
-<div id="path">
-	<ul id="artist-list"></ul>
-</div>
